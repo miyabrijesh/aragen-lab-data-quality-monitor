@@ -27,6 +27,23 @@ The project covers:
 - Cloud deployment using Streamlit Community Cloud
 
 ---
+## Dataset Availability
+
+The complete dataset and database files used in this project exceed GitHub's recommended file size limits.
+
+Therefore:
+
+- Source code
+- ETL notebooks
+- Dashboard application
+- Documentation
+
+have been uploaded to this repository.
+
+The generated dataset (`lab_data.csv`) and large SQLite database files are omitted from version control due to size restrictions.
+
+The dashboard shown in the screenshots and deployment was built and tested using the complete dataset locally.
+---
 
 # 🏗️ Project Architecture
 
