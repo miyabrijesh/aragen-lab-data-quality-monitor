@@ -41,7 +41,7 @@ st.markdown("---")
 # ==================================================
 
 conn = sqlite3.connect(
-    "../database/lab_quality_task3.db"
+    "/database/lab_quality_task3.db"
 )
 
 # ==================================================
