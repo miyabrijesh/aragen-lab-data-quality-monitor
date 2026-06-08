@@ -2,24 +2,57 @@
 
 ## Aragen Life Sciences Internship Assignment
 
-This project demonstrates an end-to-end pharmaceutical laboratory data quality monitoring solution. The system generates synthetic laboratory data, performs ETL processing, applies data quality validation rules, calculates quality scores, and presents insights through an interactive Streamlit dashboard.
+### Candidate Details
+- Name: Miya Brijesh
+- Internship Assignment: Data Quality Monitoring System
+- Technology Stack: Python, Pandas, SQLite, Streamlit, Plotly
+- Repository: https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
+- Live Dashboard: https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app
 
 ---
 
-## Project Objectives
+# 1. Project Overview
 
-- Generate a synthetic pharmaceutical laboratory dataset (~500,000 records)
-- Build an ETL pipeline using Python and SQLite
-- Implement a Data Quality Rules Engine
-- Calculate record-level and dataset-level quality scores
-- Categorize failures by severity (Critical, Major, Minor)
-- Develop an interactive Streamlit dashboard for monitoring data quality
+This project implements a complete Data Quality Monitoring solution for laboratory measurement data.
+
+The solution covers:
+
+- Synthetic laboratory dataset generation
+- ETL pipeline development
+- Data quality rule implementation
+- Quality score computation
+- Failed record identification
+- SQLite data warehouse creation
+- Interactive Streamlit dashboard
+- Cloud deployment using Streamlit Community Cloud
+
+The objective is to continuously monitor laboratory data quality, identify problematic records, and provide analytical insights through an interactive dashboard.
 
 ---
 
-## Project Structure
+# 2. Project Architecture
 
+```text
+Raw Dataset
+    ↓
+ETL Pipeline
+    ↓
+Data Quality Rules
+    ↓
+Quality Scoring
+    ↓
+SQLite Database
+    ↓
+Streamlit Dashboard
+    ↓
+Cloud Deployment
 ```
+
+---
+
+# 3. Folder Structure
+
+```text
 Aragen_Assignment/
 │
 ├── dashboard/
@@ -33,12 +66,12 @@ Aragen_Assignment/
 │   └── lab_quality_task3.db
 │
 ├── docs/
-│   ├── Aragen Life Sciences Internship Assignment.docx
 │   ├── dashboard_overview.png
+│   ├── dashboard_filter.png
 │   ├── dashboard_chart1.png
 │   ├── dashboard_chart2.png
-│   ├── dashboard_filter.png
-│   └── dashboard_failed_records.png
+│   ├── dashboard_failed_records.png
+│   └── Aragen Life Sciences Internship Assignment.docx
 │
 ├── src/
 │   ├── 01_dataset_generation.ipynb
@@ -51,166 +84,418 @@ Aragen_Assignment/
 
 ---
 
-## Task 1: Synthetic Dataset Generation
+# 4. Dataset Generation
 
-Generated approximately 500,000 pharmaceutical laboratory records containing:
+A synthetic pharmaceutical laboratory dataset was generated containing:
 
-- Sample Information
-- Laboratory Details
+- Sample IDs
+- Laboratory Information
 - Instrument Information
 - Operator Information
 - Experiment Dates
-- Measured Values
+- Recording Timestamps
+- Analyte Information
+- Measurement Values
 - Units
-- Status Information
+- Status Indicators
 
-Intentional data quality issues were introduced to simulate real-world scenarios:
+Total records generated:
+
+```text
+500,000 records
+```
+
+Purposefully injected data quality issues include:
 
 - Missing values
+- Invalid ranges
+- Future dates
+- Timestamp inconsistencies
+- Invalid units
 - Duplicate records
-- Invalid measurements
-- Invalid dates
-- Cross-field inconsistencies
-- Delayed record entry
 
 ---
 
-## Task 2: ETL Pipeline
+# 5. ETL Pipeline
 
-Performed ETL processing using Python and SQLite:
+The ETL pipeline performs:
 
-### Extract
-- Loaded source CSV dataset
+## Extract
 
-### Transform
-- Data cleansing
-- Date standardization
-- Data type validation
-- Dimension table creation
+Reading raw laboratory dataset.
 
-### Load
-Created Star Schema:
+## Transform
 
-### Fact Table
-- fact_lab_measurements
+- Data type standardization
+- Date formatting
+- Null handling
+- Data cleaning
 
-### Dimension Tables
-- dim_lab
-- dim_instrument
-- dim_operator
+## Load
 
-Database:
-- lab_quality.db
+Loading transformed records into SQLite database tables.
 
 ---
 
-## Task 3: Data Quality Rules Engine
+# 6. Data Quality Rules Implemented
 
-Implemented 12 Data Quality Rules across multiple dimensions:
+The following validation rules were implemented:
 
-### Completeness
-- Missing measured value
-- Missing analyte name
-- Missing unit
+### Rule 1: Missing Measurement Value
 
-### Uniqueness
-- Duplicate sample_id detection
+Checks for:
 
-### Validity
-- Negative measured values
-- Values outside acceptable range
-- Invalid status values
-- Invalid date formats
+```text
+measured_value IS NULL
+```
 
-### Consistency
-- Status = Pass but measured value missing
-- Unit missing while value exists
+Severity:
 
-### Timeliness
-- Records entered more than 24 hours after experiment
+```text
+Major
+```
 
-### Quality Scoring
+---
 
-Each rule contributes to a record-level score:
+### Rule 2: Invalid Measurement Range
 
-- Quality Score Range: 0–100
-- Dataset Quality Score: 97.15%
+Checks:
 
-### Severity Classification
+```text
+measured_value < 0
+OR
+measured_value > allowed threshold
+```
+
+Severity:
+
+```text
+Critical
+```
+
+---
+
+### Rule 3: Future Experiment Date
+
+Checks:
+
+```text
+experiment_date > current_date
+```
+
+Severity:
+
+```text
+Critical
+```
+
+---
+
+### Rule 4: Timestamp Validation
+
+Checks:
+
+```text
+recorded_at < experiment_date
+```
+
+Severity:
+
+```text
+Major
+```
+
+---
+
+### Rule 5: Invalid Units
+
+Checks:
+
+```text
+unit NOT IN approved units
+```
+
+Severity:
+
+```text
+Minor
+```
+
+---
+
+### Rule 6: Duplicate Sample IDs
+
+Checks:
+
+```text
+duplicate sample_id
+```
+
+Severity:
+
+```text
+Major
+```
+
+---
+
+# 7. Quality Score Calculation
+
+Each record starts with:
+
+```text
+100 Points
+```
+
+Penalty Model:
+
+| Severity | Penalty |
+|-----------|----------|
+| Critical | 20 |
+| Major | 10 |
+| Minor | 5 |
+
+Formula:
+
+```text
+Quality Score = 100 - Total Penalties
+```
+
+Minimum score:
+
+```text
+0
+```
+
+Maximum score:
+
+```text
+100
+```
+
+---
+
+# 8. Database Design
+
+SQLite database was created with the following tables.
+
+## Fact Table
+
+### fact_lab_measurements
+
+Stores:
+
+- Sample Information
+- Quality Scores
+- Rule Violations
+- Severity
+
+---
+
+## Dimension Tables
+
+### dim_lab
+
+Laboratory details.
+
+### dim_instrument
+
+Instrument details.
+
+### dim_operator
+
+Operator details.
+
+---
+
+## Failed Records Table
+
+### failed_records
+
+Stores all records violating one or more quality rules.
+
+---
+
+# 9. Dashboard Development
+
+An interactive Streamlit dashboard was developed.
+
+Features include:
+
+- KPI Cards
+- Interactive Filters
+- Visual Analytics
+- Failed Records Drilldown
+- Cloud Deployment
+
+---
+
+# 10. Dashboard KPIs
+
+The dashboard displays:
+
+### Overall Data Quality Score
+
+Average quality score across all records.
+
+### Total Records
+
+Total records processed.
+
+### Failed Records
+
+Records that violated at least one quality rule.
+
+---
+
+# 11. Dashboard Filters
+
+Implemented filters:
+
+### Severity Filter
+
+```text
+Critical
+Major
+Minor
+```
+
+### Lab Filter
+
+Select individual laboratories.
+
+### Instrument Filter
+
+Select instruments.
+
+### Date Range Filter
+
+Filter records based on experiment date.
+
+---
+
+# 12. Dashboard Visualizations
+
+## Quality Breakdown by Lab
+
+Displays average quality score for each laboratory.
+
+### Screenshot
+
+![Quality by Lab](docs/dashboard_overview.png)
+
+---
+
+## Quality Breakdown by Instrument
+
+Displays average quality score across instruments.
+
+### Screenshot
+
+![Quality by Instrument](docs/dashboard_chart1.png)
+
+---
+
+## Quality Score Over Time
+
+Trend analysis of quality scores.
+
+### Screenshot
+
+![Quality Over Time](docs/dashboard_chart2.png)
+
+---
+
+## Severity Distribution
+
+Distribution of:
 
 - Critical
 - Major
 - Minor
 
-Database:
-- lab_quality_task3.db
+violations.
+
+### Screenshot
+
+![Severity Distribution](docs/dashboard_chart2.png)
 
 ---
 
-## Task 4: Interactive Dashboard
+## Failed Records Drilldown
 
-Built using Streamlit and Plotly.
+Detailed failed record inspection.
 
-### Dashboard Features
+### Screenshot
 
-#### KPI Metrics
-- Overall Quality Score
-- Total Records
-- Failed Records
-
-#### Visualizations
-- Quality Breakdown by Lab
-- Quality Breakdown by Instrument
-- Quality Score Trend Over Time
-- Severity Distribution
-
-#### Drill Down Analysis
-- Failed Records Table
-
-#### Interactive Filters
-- Severity
-- Lab
-- Instrument
-- Date Range
+![Failed Records](docs/dashboard_failed_records.png)
 
 ---
 
-## Technology Stack
+## Dashboard Filters
 
-- Python
-- Pandas
-- NumPy
-- SQLite
-- Plotly
-- Streamlit
-- Jupyter Notebook
+### Screenshot
+
+![Filters](docs/dashboard_filter.png)
 
 ---
 
-## Dashboard Preview
+# 13. Deployment
 
-Dashboard screenshots are available in the `docs` folder.
+The dashboard was deployed using:
 
----
+### Streamlit Community Cloud
 
-## How to Run
+Deployment Link:
 
-### Install Dependencies
+https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app
 
-```bash
-pip install -r requirements.txt
-```
+Repository:
 
-### Run Dashboard
-
-```bash
-streamlit run dashboard/app.py
-```
+https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
 
 ---
 
-## Author
+# 14. Technologies Used
 
-Miya Brijesh
+| Technology | Purpose |
+|------------|----------|
+| Python | Core Programming |
+| Pandas | Data Processing |
+| NumPy | Numerical Operations |
+| SQLite | Data Warehouse |
+| Streamlit | Dashboard |
+| Plotly | Interactive Charts |
+| Git | Version Control |
+| GitHub | Repository Hosting |
+| Streamlit Cloud | Deployment |
 
-Aragen Life Sciences Internship Assignment
+---
+
+# 15. Key Outcomes
+
+Successfully implemented:
+
+✅ Large-scale laboratory dataset generation
+
+✅ End-to-end ETL pipeline
+
+✅ Automated data quality validation
+
+✅ Quality score computation framework
+
+✅ SQLite analytical database
+
+✅ Interactive monitoring dashboard
+
+✅ Cloud deployment
+
+✅ GitHub repository management
+
+---
+
+# 16. Conclusion
+
+This project demonstrates the implementation of a complete Data Quality Monitoring System for laboratory environments. The solution automates quality validation, tracks quality trends, identifies failed records, and provides stakeholders with actionable insights through an interactive dashboard.
+
+The final solution is scalable, modular, and suitable for extension into production-grade laboratory data quality monitoring systems.
