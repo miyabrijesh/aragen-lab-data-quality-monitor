@@ -6,8 +6,8 @@
 - **Name:** Miya Brijesh
 - **Project:** Lab Data Quality Monitor
 - **Technology Stack:** Python, Pandas, SQLite, Streamlit, Plotly
-- **GitHub Repository:** https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
-- **Live Dashboard:** https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app
+- **GitHub Repository:** [aragen-lab-data-quality-monitor](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor)
+- **Live Dashboard:** [Streamlit Deployment](https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app)
 
 ---
 
@@ -38,20 +38,9 @@ The project covers:
 ---
 ## Dataset Availability
 
-The complete dataset and database files used in this project exceed GitHub's recommended file size limits.
+The project was developed using a large synthetic laboratory dataset containing approximately 500,000 records.
 
-Therefore:
-
-- Source code
-- ETL notebooks
-- Dashboard application
-- Documentation
-
-have been uploaded to this repository.
-
-The generated dataset (`lab_data.csv`) and large SQLite database files are omitted from version control due to size restrictions.
-
-The dashboard shown in the screenshots and deployment was built and tested using the complete dataset locally.
+Due to GitHub file size recommendations, future versions of this repository may exclude large data artifacts and database files. The complete implementation, dashboard source code, ETL notebooks, and documentation are included in this repository.
 ---
 
 # 🏗️ Project Architecture
