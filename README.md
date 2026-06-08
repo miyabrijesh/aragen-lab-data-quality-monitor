@@ -25,6 +25,9 @@ The project covers:
 - SQLite data warehouse creation
 - Interactive Streamlit dashboard
 - Cloud deployment using Streamlit Community Cloud
+## Dashboard Preview
+
+![Dashboard](docs/dashboard_overview.png)
 
 ---
 ## Dataset Availability
