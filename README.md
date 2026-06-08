@@ -123,7 +123,7 @@ A synthetic pharmaceutical laboratory dataset was generated to simulate laborato
 ### Dataset Size
 
 ```text
-500,000 Records
+Approximately 500,000 synthetic laboratory records
 ```
 
 ### Introduced Data Quality Issues
