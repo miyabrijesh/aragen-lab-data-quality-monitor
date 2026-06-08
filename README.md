@@ -1,5 +1,10 @@
 # 🧪 Lab Data Quality Monitor
 
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
+![SQLite](https://img.shields.io/badge/Database-SQLite-green)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+
 ## Aragen Life Sciences Internship Assignment
 
 ### Candidate Information
@@ -25,11 +30,6 @@ The project covers:
 - SQLite data warehouse creation
 - Interactive Streamlit dashboard
 - Cloud deployment using Streamlit Community Cloud
-
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
-![SQLite](https://img.shields.io/badge/Database-SQLite-green)
-![Status](https://img.shields.io/badge/Status-Completed-success)
 
 ## Dashboard Preview
 
