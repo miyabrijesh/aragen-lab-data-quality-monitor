@@ -4,6 +4,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
 ![SQLite](https://img.shields.io/badge/Database-SQLite-green)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
+[![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-success)](https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app)
 
 ## Aragen Life Sciences Internship Assignment
 
