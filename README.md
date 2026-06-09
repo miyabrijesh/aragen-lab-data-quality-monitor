@@ -14,6 +14,7 @@
 - **Technology Stack:** Python, Pandas, SQLite, Streamlit, Plotly
 - **GitHub Repository:** [aragen-lab-data-quality-monitor](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor)
 - **Live Dashboard:** [Streamlit Deployment](https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app)
+- ![CI](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor/actions/workflows/ci.yml/badge.svg)
 
 ---
 
