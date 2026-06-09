@@ -46,27 +46,7 @@ Due to GitHub file size recommendations, future versions of this repository may 
 
 # 🏗️ Project Architecture
 
-```text
-Lab Dataset
-      │
-      ▼
-ETL Pipeline
-      │
-      ▼
-Data Quality Validation Rules
-      │
-      ▼
-Quality Score Calculation
-      │
-      ▼
-SQLite Data Warehouse
-      │
-      ▼
-Interactive Streamlit Dashboard
-      │
-      ▼
-Cloud Deployment
-```
+![Architecture](docs/database.drawio.png)
 
 ---
 
