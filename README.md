@@ -32,6 +32,20 @@ The project covers:
 - Interactive Streamlit dashboard
 - Cloud deployment using Streamlit Community Cloud
 
+---
+
+## Key Highlights
+
+- Generated ~500,000 synthetic laboratory records
+- Implemented 12 automated data quality validation rules
+- Built ETL pipeline using Pandas
+- Designed SQLite star-schema warehouse
+- Developed interactive Streamlit dashboard
+- Achieved overall dataset quality score of 97.15%
+- Deployed solution on Streamlit Community Cloud
+
+---
+
 ## Dashboard Preview
 
 ![Dashboard](docs/dashboard_overview.png)
@@ -39,9 +53,18 @@ The project covers:
 ---
 ## Dataset Availability
 
-The project was developed using a large synthetic laboratory dataset containing approximately 500,000 records.
+The project was developed using a synthetic laboratory dataset containing approximately 500,000 records.
 
-Due to GitHub file size recommendations, future versions of this repository may exclude large data artifacts and database files. The complete implementation, dashboard source code, ETL notebooks, and documentation are included in this repository.
+Large dataset and database artifacts may exceed GitHub's recommended file size limits and therefore may not be included in version control.
+
+The repository includes:
+
+- Source code
+- ETL notebooks
+- Dashboard implementation
+- Documentation
+
+The dashboard was developed and validated using the complete dataset locally.
 ---
 
 # 🏗️ Project Architecture
