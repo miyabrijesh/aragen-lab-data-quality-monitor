@@ -100,9 +100,11 @@ Aragen_Assignment/
 │   ├── 01_dataset_generation.ipynb
 │   ├── 02_etl_pipeline.ipynb
 │   └── 03_data_quality_rules.ipynb
-│
+├── Dockerfile
+├── docker-compose.yml
 ├── README.md
 └── requirements.txt
+
 ```
 
 ---
@@ -465,6 +467,7 @@ https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
 | Git | Version Control |
 | GitHub | Repository Hosting |
 | Streamlit Cloud | Deployment |
+| Docker | Containerization & Deployment |
 
 ---
 
@@ -513,6 +516,26 @@ streamlit run dashboard/app.py
 ```
 
 ---
+
+# 🐳 Bonus Implementation – Docker Deployment
+
+The application is fully containerized using Docker for consistent, reproducible deployment across environments.
+
+### Run with Docker
+
+```bash
+docker-compose up --build
+```
+
+Dashboard will be available at: **http://localhost:8501**
+
+> Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) to be installed and running.
+
+### Docker Preview
+
+![Docker Deployment](docs/docker_deployed_localhost.png)
+---
+
 # 📦 Bonus Implementation – Parquet Partitioning
 
 As an additional enhancement, the processed laboratory dataset was exported in Apache Parquet format and partitioned by laboratory name.
