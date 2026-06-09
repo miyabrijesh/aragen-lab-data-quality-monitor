@@ -513,6 +513,24 @@ streamlit run dashboard/app.py
 ```
 
 ---
+# 📦 Bonus Implementation – Parquet Partitioning
+
+As an additional enhancement, the processed laboratory dataset was exported in Apache Parquet format and partitioned by laboratory name.
+
+### Partition Structure
+
+```text
+parquet/
+└── fact_lab_measurements/
+    ├── lab_name=Analytical Lab A/
+    ├── lab_name=Analytical Lab B/
+    ├── lab_name=Formulation Lab/
+    ├── lab_name=Microbiology Lab/
+    ├── lab_name=QC Lab/
+    ├── lab_name=Research Lab/
+    └── lab_name=Stability Lab/
+
+---
 ## Future Enhancements
 
 - Real-time data ingestion
