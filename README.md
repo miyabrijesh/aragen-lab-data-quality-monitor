@@ -469,6 +469,8 @@ https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
 | GitHub | Repository Hosting |
 | Streamlit Cloud | Deployment |
 | Docker | Containerization & Deployment |
+| pytest | Unit Testing |
+| GitHub Actions | CI/CD Pipeline |
 
 ---
 
@@ -602,6 +604,10 @@ Successfully implemented:
 ✅ GitHub repository integration
 
 ✅ Streamlit Cloud deployment
+
+✅ Unit tests with pytest (13 tests)
+
+✅ CI/CD pipeline with GitHub Actions
 
 ---
 
