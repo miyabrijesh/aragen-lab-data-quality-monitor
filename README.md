@@ -5,6 +5,7 @@
 ![SQLite](https://img.shields.io/badge/Database-SQLite-green)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 [![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-success)](https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app)
+![CI](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor/actions/workflows/ci.yml/badge.svg)
 
 ## Aragen Life Sciences Internship Assignment
 
@@ -14,7 +15,6 @@
 - **Technology Stack:** Python, Pandas, SQLite, Streamlit, Plotly
 - **GitHub Repository:** [aragen-lab-data-quality-monitor](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor)
 - **Live Dashboard:** [Streamlit Deployment](https://aragen-lab-data-quality-monitor-ephu6jrh58bpnng2zjus3n.streamlit.app)
-- ![CI](https://github.com/miyabrijesh/aragen-lab-data-quality-monitor/actions/workflows/ci.yml/badge.svg)
 
 ---
 
