@@ -269,30 +269,28 @@ Major
 
 # 🎯 Quality Score Calculation
 
-Each laboratory record begins with a perfect score.
-
-```text
-Starting Score = 100
-```
-
-Penalty model:
-
-| Severity | Penalty |
-|-----------|-----------|
-| Critical | 20 |
-| Major | 10 |
-| Minor | 5 |
+Each record is evaluated against all quality rules. The score reflects the proportion of rules passed.
 
 ### Formula
 
 ```text
-Quality Score = 100 − Total Penalties
+Quality Score = (Rules Passed ÷ Total Rules) × 100
 ```
+
+### Severity Classification
+
+Severity is assigned based on the resulting score:
+
+| Score Range | Severity |
+|-------------|----------|
+| < 50        | Critical |
+| 50 – 79     | Major    |
+| ≥ 80        | Minor    |
 
 Score Range:
 
 ```text
-0 to 100
+0 to 100 (rounded to 2 decimal places)
 ```
 
 ---
@@ -467,6 +465,24 @@ https://github.com/miyabrijesh/aragen-lab-data-quality-monitor
 | Git | Version Control |
 | GitHub | Repository Hosting |
 | Streamlit Cloud | Deployment |
+
+---
+
+# ⚖️ Tool Selection: Pandas vs PySpark
+
+**Choice: Pandas**
+
+| Factor | Pandas | PySpark |
+|---|---|---|
+| Dataset size | Efficient for < 5M rows in memory | Optimal for 10M+ rows across clusters |
+| Setup complexity | Zero — runs locally or in Colab | Requires JVM, Spark context, more config |
+| Development speed | Fast iteration in Jupyter notebooks | Verbose; DAG compilation adds overhead |
+| Memory at 500K rows | ~150–200 MB — well within limits | Spark overhead exceeds data size at this scale |
+| Production readiness | Fine for single-node pipelines | Required for distributed, multi-node ETL |
+
+**Justification:** At 500,000 rows (~150 MB in memory), Pandas handles the full dataset comfortably on a single machine without memory issues. PySpark's benefits — lazy evaluation, the Catalyst optimizer, distributed partitioning — only pay off at significantly larger scales (tens of millions of rows across multiple nodes). Introducing PySpark here would add JVM startup overhead, verbose syntax, and unnecessary infrastructure complexity for no measurable performance gain. Pandas was the right tool for this scale.
+
+*Note: If this pipeline were to scale to 50M+ rows across multiple labs in real time, PySpark with partitioned Parquet output on a cloud lakehouse (e.g., AWS S3 + Glue) would be the appropriate upgrade path.*
 
 ---
 
