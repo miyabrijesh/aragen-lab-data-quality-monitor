@@ -529,8 +529,22 @@ parquet/
     ├── lab_name=QC Lab/
     ├── lab_name=Research Lab/
     └── lab_name=Stability Lab/
+```
+
+### Benefits
+
+- Faster analytical queries
+
+- Reduced storage footprint compared to CSV
+
+- Efficient partition pruning
+
+- Scalable design for large datasets
+
+- Industry-standard format for data engineering workflows
 
 ---
+
 # Future Enhancements
 
 - Real-time data ingestion
