@@ -531,7 +531,7 @@ parquet/
     └── lab_name=Stability Lab/
 
 ---
-## Future Enhancements
+# Future Enhancements
 
 - Real-time data ingestion
 - Automated alerting system
